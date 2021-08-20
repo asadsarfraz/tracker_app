@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_stocks, only: [:create, :destroy]
   devise_for :users
   get "/welcome", to: "welcome#index"
   root "welcome#index"
