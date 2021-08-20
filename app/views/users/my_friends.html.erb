@@ -2,25 +2,25 @@
 
 <div class='search-area'>
   <h3>Search Friends</h3>
-  <%= form_tag search_friend_path, remote: true, method: :get do %>
-    <div class="form-group row">
-      <div class="col-sm-9 ">
-        <%= text_field_tag :friend, params[:friend], placeholder: "Name or email", autofocus: true, class: "form-control form-control-lg" %>
-      </div>
-      <div class="col-sm-3 ">
-        <%= button_tag type: :submit, class: "btn btn-success search_icon" do %>
-          <i class="fa fa-search fa-2x"></i>
-        <% end %>
-      </div>
+ </div>
+
+<%= search_form_for @q, url: my_friends_path  ,class: "form-group" do |f| %>
+  <div class="form-group row">
+    <div class="col-sm-9">
+      <%= f.search_field :first_name_cont, class: "form-control" %>
     </div>
-  <% end %>
-</div>
+    <div class="col-sm-3">
+      <%= f.submit  %>
+      
+    </div>
+  </div>
+<% end %>
+<%=render partial: 'users/friend_result' %>  
+       
 
-<div id="friend-results">
-
-</div>
+<%# <div id="friend-results"></div> %>
 
 
 <% if !@friends.empty? %>
-  <%= render 'friends/list' %>
-<% end %> 
+  <%= render 'friends/list'%>
+<% end %>
