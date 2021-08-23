@@ -4,23 +4,17 @@
   <h3>Search Friends</h3>
  </div>
 
-<%= search_form_for @q, url: my_friends_path  ,class: "form-group" do |f| %>
+<%= search_form_for @q,remote: true, url: my_friends_path, class: "form-group" do |f| %>
   <div class="form-group row">
     <div class="col-sm-9">
-      <%= f.search_field :first_name_cont, class: "form-control" %>
+      <%= f.search_field :first_name_or_last_name_or_email_cont, class: "form-control" %>
     </div>
     <div class="col-sm-3">
-      <%= f.submit  %>
-      
+      <%= f.submit %>
     </div>
   </div>
 <% end %>
-<%=render partial: 'users/friend_result' %>  
-       
 
-<%# <div id="friend-results"></div> %>
+<div id="friend-results"></div> 
 
-
-<% if !@friends.empty? %>
-  <%= render 'friends/list'%>
-<% end %>
+<%= render "friends/list", friends: @friends %>
